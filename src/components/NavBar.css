@@ -1,0 +1,13 @@
+.navbar-link {
+  text-decoration: none;
+  color: black;
+  margin: 15px;
+}
+
+.navbar-wrapper {
+    /* padding: 15px; */
+}
+
+.navbar {
+    display: flex;
+}

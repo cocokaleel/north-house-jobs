@@ -1,0 +1,39 @@
+.job-picker-cycle-days-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+
+.job-picker-day-wrapper {
+    padding: 1%;
+    border-color: black;
+    border: 1px;
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+}
+
+.job-picker-button {
+    border: none;
+    margin: 1px;
+    padding: 5%;
+    border-radius: 7px;
+}
+
+.job-picker-button.Cook {
+    order: 3;
+    background-color: rgb(0, 0, 174);
+    color: white;
+}
+.job-picker-button.Post {
+    order: 4;
+    background-color: rgb(171, 252, 146);
+}
+.job-picker-button.Pre-Pre {
+    order: 1;
+    background-color: rgb(110, 110, 255);
+}
+.job-picker-button.Pre {
+    order: 2;
+    background-color: rgb(240, 254, 151);
+}

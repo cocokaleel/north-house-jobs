@@ -1,0 +1,19 @@
+.cycle-creator-tasks-wrapper {
+    display: flex;
+}
+
+.cycle-creator-tasks-wrapper .task {
+    min-width: 150px;
+    margin: 3px;
+    border: 2px;
+    border-style: solid;
+    border-color:black;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.task .form-item {
+    margin: 3px;
+}
