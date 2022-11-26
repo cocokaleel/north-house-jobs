@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getDatabase, ref, onValue} from "firebase/database";
 import { initializeApp } from "firebase/app";
-import Day from "./JobPickerDay.js";
+import Day from "./JobPickerDay.tsx";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -32,7 +32,6 @@ function JobPicker(props: cycleProps) {
     
     //Load the data
     function load_data () {
-        console.log("I'M CALLED");
         onValue(cycleDataRef, (snapshot) => {
             setCycleData(snapshot.val());
             var data = snapshot.val();
@@ -49,7 +48,14 @@ function JobPicker(props: cycleProps) {
         } else {
             let job_picker_days : any[] = []; //todo any is bad
             for (let date in cycleData) {
-                job_picker_days.push(<Day date={date} jobs={cycleData[date]} key={"job-picker-day-"+date} />);
+                job_picker_days.push(
+                <Day 
+                    date={date} 
+                    jobs={cycleData[date]} 
+                    key={"job-picker-day-"+date }
+                    db={database} 
+                    db_path={"cycles/"+props.cycle+"/"+date+"/"}
+                />);
             }
             return job_picker_days;
         }
@@ -63,4 +69,4 @@ function JobPicker(props: cycleProps) {
         );
 }
 
-export default JobPicker; 
+export default JobPicker
