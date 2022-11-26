@@ -3,25 +3,19 @@ import './index.css';
 import JobPicker from '../components/JobSelection/JobPicker.tsx';
 import {getFormattedDate} from '../components/JobSelection/JobPickerDay.tsx'
 import { getDatabase, ref, onValue} from "firebase/database";
-import { initializeApp } from "firebase/app";
+import { FirebaseApp } from "firebase/app";
 
-// See: https://firebase.google.com/docs/web/learn-more#config-object
-const firebaseConfig = {
-  // ...
-  // The value of `databaseURL` depends on the location of the database
-  databaseURL: "https://eph-jobs-tracker-default-rtdb.firebaseio.com/",
-};
-
-// Initialize Firebase
-initializeApp(firebaseConfig);
-
-// Initialize Realtime Database and get a reference to the service
-const database = getDatabase();
+type appProps = {
+  app: FirebaseApp;
+}
 
 /**
  * @returns The HTML for the job selection page
  */
-function SelectJobs () {
+function SelectJobs (props: appProps) {
+  // Initialize Realtime Database and get a reference to the service
+  const database = getDatabase(props.app);
+
   const [cycleData, setCycleData] = useState<{string: string}>();
   const [chosenCycle, setChosenCycle] = useState<string>("2022-12-11-Cycle");
   const cycleDataRef = ref(database, "cycles/");

@@ -1,8 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
-  
-function Navbar() {
+import {FirebaseApp} from "firebase/app";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+
+type appProps = {
+  app: FirebaseApp;
+}
+function Navbar(props: appProps) {
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+
+  const auth = getAuth(props.app);
+
+  function sign_out() {
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      console.log("Signed out");
+    }).catch((error) => {
+      // An error happened.
+      console.log(error.message);
+    });
+  }
+
+  function sign_in() {
+    signInWithEmailAndPassword(auth, email?email:"", password?password:"")
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error.message);
+      });
+  }
+
   return (
     <div className ="navbar-wrapper">
       <nav className="navbar">
@@ -16,6 +50,12 @@ function Navbar() {
             Select Jobs
           </NavLink>
       </nav>
+      <div id="nav-sign-in-wrapper">
+        <input type="email" placeholder="username" id="nav-username" onChange={(e)=>setEmail(e.target.value)}></input>
+        <input type="password" placeholder="password" id="nav-password"onChange={(e)=>setPassword(e.target.value)}></input>
+        <button id="nav-signin-submit" onClick={sign_in}>Submit</button>
+        <button id="nav-signout" onClick={sign_out}>Sign Out</button>
+      </div>
     </div>
   );
 };

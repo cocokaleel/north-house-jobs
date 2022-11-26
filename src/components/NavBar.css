@@ -6,6 +6,12 @@
 
 .navbar-wrapper {
     /* padding: 15px; */
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-wrapper div {
+  margin: 15px;
 }
 
 .navbar {

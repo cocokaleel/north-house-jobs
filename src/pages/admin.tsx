@@ -1,8 +1,14 @@
 import React from 'react';
 import CycleCreator from "../components/Admin/CycleCreator.tsx";
 import './index.css';
+import {FirebaseApp} from "firebase/app";
   
-function Admin () {
+
+type appProps = {
+  app: FirebaseApp;
+}
+
+function Admin (props: appProps) {
   return (
     <div className="page-wrapper">
       <h1>Admin Home</h1>
