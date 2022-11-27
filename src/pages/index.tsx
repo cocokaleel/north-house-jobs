@@ -19,6 +19,7 @@ function Home (props: appProps) {
       // https://firebase.google.com/docs/reference/js/firebase.User
       uid = user.uid;
       setUserId(user.uid);
+      console.log('user id from home page')
       // ...
     } else {
       // User is signed out

@@ -5,6 +5,7 @@ import Day from "./JobPickerDay.tsx";
 
 type cycleProps = {
     cycle: string;
+    // data: {string: string};
     database: Database;
 }
 /**
@@ -14,13 +15,15 @@ type cycleProps = {
  */
 function JobPicker(props: cycleProps) {
     const [cycleData, setCycleData] = useState<{string: string}>();
-    var cycleDataRef = ref(props.database, "cycles/"+props.cycle);
 
-    useEffect(()=>load_data, [props.cycle])
+    useEffect(()=>{
+        console.log("JOB PICKER USE EFFECT");
+        load_data();
+    }, [props.cycle]);//[props.cycle]
 
-    //Load the data
+    // Load the data
     function load_data () {
-        console.log("reloaded data for job picker")
+        var cycleDataRef = ref(props.database, "cycles/"+props.cycle);
         onValue(cycleDataRef, (snapshot) => {
             setCycleData(snapshot.val());
         });
@@ -28,10 +31,6 @@ function JobPicker(props: cycleProps) {
 
     //Generate the date objects filled with buttons in the job picker
     function generateDays() {
-        if (cycleData===undefined) {
-            load_data();
-        }
-        console.log("generated days");
         let job_picker_days : any[] = []; //todo any is bad
         for (let date in cycleData) {
             job_picker_days.push(
@@ -48,6 +47,7 @@ function JobPicker(props: cycleProps) {
 
     return (
             <div className="job-picker-cycle-days-wrapper" >
+                <p>Chosen Cycle: {props.cycle}</p>
                 {generateDays()}
             </div>
         );
