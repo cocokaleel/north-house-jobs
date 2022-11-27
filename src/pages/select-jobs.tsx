@@ -23,7 +23,7 @@ function SelectJobs (props: appProps) {
   const [localEmail, setLocalEmail] = useState<string>();
   const [signedIn, setSignedIn] = useState<boolean>(false);
   const [cycleData, setCycleData] = useState<{string: string}>();
-  const [chosenCycle, setChosenCycle] = useState<string>("");
+  const [chosenCycle, setChosenCycle] = useState<string>("2022-12-11-Cycle");
   const auth = getAuth(props.app);
 
 
@@ -105,11 +105,7 @@ function SelectJobs (props: appProps) {
         for that 2-week period will show up.
       </p>
       <h2>Welcome {localEmail}</h2>
-      {/* <button onClick={()=>load_data()}>Load data</button> */}
-      <input type="text" onChange={(e)=>setChosenCycle(e.target.value)} value={chosenCycle}></input>
-      {/* <p>Chosen cycle: {chosenCycle}</p> */}
       {generateSelect()}
-      {/* */}
       {generateJobPicker()}
     </div>
   );

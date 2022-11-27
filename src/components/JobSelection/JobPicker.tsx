@@ -47,7 +47,6 @@ function JobPicker(props: cycleProps) {
 
     return (
             <div className="job-picker-cycle-days-wrapper" >
-                <p>Chosen Cycle: {props.cycle}</p>
                 {generateDays()}
             </div>
         );
